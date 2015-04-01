@@ -18,27 +18,94 @@
 
         <div id="top" class="top">
             <ui:insert name="top">
-                <div align="center">
-                    <h:form id="form">
-                        <h:panelGrid columns="6" style="margin-right:10px" cellpadding="10">
-                            <p:outputLabel value="INICIO"/>
-                            <p:outputLabel for="console" value="Categoria de Busqueda:" />
-                            <p:selectOneMenu id="console" value="#{selectOneMenuView.console}" style="width:125px">
-                                <f:selectItem itemLabel="Categoria" itemValue="" />
+                <h:form>
+                    <p:menubar styleClass="centrado">
+                        <p:menuitem value="HOME" style="margin-right: 20pt; color: black; font-size: 20pt" />
+                        <p:menuitem value="Categoría de Búsqueda: " style="color: black; font-size: 20pt"/>
+                        <p:menuitem >
+                            <p:selectOneMenu id="console" value="#{selectOneMenuView.console}" style="margin: 5pt;width:125px; text">
                                 <f:selectItem itemLabel="Local" itemValue="Local" />
                                 <f:selectItem itemLabel="Comida" itemValue="Comida" />
                                 <f:selectItem itemLabel="Facultad" itemValue="Facultad" />
+                                <f:selectItem itemLabel="Tipo" itemValue="Tipo" />
                             </p:selectOneMenu>
-                            <p:inputText id="busqueda" placeholder="Busqueda" value=""/>
-                            <p:commandButton type="button" value="Buscar" icon="ui-icon-extlink"/>
-                            <p:commandButton type="button" value="Iniciar Sesión" icon="ui-icon-extlink"/>
-                            <h:commandLink value="Busqueda Avanzada" action="index" />
-                        </h:panelGrid>
-                    </h:form>
-                </div>
-               
-           
-                
+                        </p:menuitem>
+                        <p:menuitem>
+                            <p:inputText placeholder="Buscqueda" style=""/>
+                            <p:button icon="ui-icon-search" title="Buscar" style="margin: 5pt"/>
+                        </p:menuitem>
+                        <p:menuitem>
+                            <p:commandButton icon="ui-icon-key" value="Iniciar Sesión" title="Iniciar Sesión" onclick="PF('logeo').show();" style="margin: 5pt"/>
+                        </p:menuitem>
+                    </p:menubar>
+                    
+                    <p:accordionPanel activeIndex="-1">
+                        <p:tab title="Busqued Avanzada" >
+                            <p:selectManyCheckbox id="grid" value="#{checkboxView.selectedCities}" layout="grid" columns="3" styleClass="centrado">
+                                <!--f:selectItems value="#{checkboxView.cities}" var="city" itemLabel="#{city}" itemValue="#{city}" /-->
+                                <f:selectItem itemLabel="Wi-Fi" itemValue="Wi-Fi"/>
+                                <f:selectItem itemLabel="Metro" itemValue="Metro" />
+                                <f:selectItem itemLabel="Para Comer" itemValue="Para Comer" />
+                                <f:selectItem itemLabel="Baño" itemValue="Baño" />
+                                <f:selectItem itemLabel="Metrobús" itemValue="Metrobús" />
+                                <f:selectItem itemLabel="Para Llevar" itemValue="Para Llear" />
+                                <f:selectItem itemLabel="Estacionamiento" itemValue="Estacionamiento" />
+                                <f:selectItem itemLabel="Pumabús" itemValue="Pumabús" />
+                                <f:selectItem itemLabel="Bicipuma" itemValue="Bicipuma" />
+                            </p:selectManyCheckbox>
+                        </p:tab>
+                    </p:accordionPanel>
+                </h:form>
+                <p:dialog header="INICIAR SESIÓN" widgetVar="logeo" modal="true" height="200" closable="true" style="width: 120px;">
+                    <br/>
+                    <p:inputText placeholder="Usuario" />
+                    <br/>
+                    <br/>
+                    <br/>
+                    <p:password placeholder="Contraseña" />
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div align="center">
+                        <p:commandButton value="Entrar"/>
+                        <br/><br/>
+                        <p:commandLink value="Recuperar Contraseña" style="color: cornflowerblue" onclick="PF('recuperar').show();"/>
+                        <br/>
+                        <p:commandLink value="Registrarse" style="color: cornflowerblue" onclick="PF('registro').show();"/>
+                    </div>
+                </p:dialog>
+                <p:dialog header="REGISTRAR" widgetVar="registro" modal="true" height="300" closable="true" style="width: 120px;">
+                    <br/>
+                    <p:inputText placeholder="Nombre Completo" />
+                    <br/>
+                    <br/>
+                    <p:inputText placeholder="Usuario" />
+                    <br/>
+                    <br/>
+                    <p:inputText placeholder="Correo" />
+                    <br/>
+                    <br/>
+                    <p:password placeholder="Contraseña" />
+                    <br/>
+                    <br/>
+                    <p:password placeholder="Confirmar Contraseña" />
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div align="center">
+                        <p:commandButton value="Registrarse"/>
+                    </div>
+                </p:dialog>
+                <p:dialog header="RECUPERAR CONTRASEÑA" widgetVar="recuperar" modal="true" height="100" closable="true" style="width: 120px;">
+                    <br/>
+                    <p:inputText placeholder="Correo" />
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div align="center">
+                        <p:commandButton value="Recuperar Contraseña"/>
+                    </div>
+                </p:dialog>
             </ui:insert>
         </div>
 

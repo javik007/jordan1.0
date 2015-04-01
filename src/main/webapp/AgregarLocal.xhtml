@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Pagina para agregar un nuevo local
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+    <h:form id="formulario">
+        <h:panelGrid id="local" columns="3">
+            <p:outputLabel value="Nombre"/>
+            <p:inputText id="nombre" value="#{controladorLocal.nombre}" required="true" />
+            <p:message for="nombre" />
+            <p:outputLabel value="Alias"/>
+            <p:inputText id="alias" value="#{controladorLocal.local.alias}" required="true" />
+            <p:message for="alias" />
+        </h:panelGrid>
+        <p:commandButton ajax="false" actionListener="#{controladorLocal.guardarLocal()}" value="Guardar" update=":locales @form"
+                         />
+    </h:form>
+</html>

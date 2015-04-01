@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Pagina principal del sistema Jordan.
+-->    
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <ui:composition template="/Plantillas/plantilla.xhtml">
+        <ui:define name="content">
+            <div align="center">  
+                <h:form>
+                    <p:commandButton value="Otorgar Privilegios de Administrador" 
+                                     id="elimest" 
+                                     type="button"
+                                     ajax="false" 
+                                     styleClass="botones"
+                                     onclick="PF('dlg2').show();"/>
+                    <br/>
+                    <br/>
+                    <p:commandButton value="Retirar Privilegios a un Administrador" 
+                                     id="elimusu" 
+                                     type="button"
+                                     ajax="false" 
+                                     styleClass="botones"
+                                     onclick="PF('dlg3').show();"/>
+                </h:form>
+            </div>    
+            <p:dialog header="Otorgar Privilegios" widgetVar="dlg2" modal="true" height="100">
+                <h:form>
+                    <p:dataTable var="car" value="#{dfCarsView.cars}">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{dfCarsView.id}" />
+                        </p:column>
+
+                        <p:column headerText="Year">
+                            <h:outputText value="#{dfCarsView.year}" />
+                        </p:column>
+
+                        <p:column headerText="Brand">
+                            <h:outputText value="#{dfCarsView.brand}" />
+                        </p:column>
+
+                        <p:column headerText="Color">
+                            <h:outputText value="#{dfCarsView.color}" />
+                        </p:column>
+
+                        <p:column headerText="Otorgar Privilegios">
+                            <p:commandButton value="Otorgar" actionListener="#{dfCarsView.selectCarFromDialog(car)}" />
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </p:dialog>
+            <p:dialog header="Retirar Privilegios" widgetVar="dlg3" modal="true" height="100">
+                <h:form>
+                    <p:dataTable var="car" value="#{dfCarsView.cars}">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{dfCarsView.id}" />
+                        </p:column>
+
+                        <p:column headerText="Year">
+                            <h:outputText value="#{dfCarsView.year}" />
+                        </p:column>
+
+                        <p:column headerText="Brand">
+                            <h:outputText value="#{dfCarsView.brand}" />
+                        </p:column>
+
+                        <p:column headerText="Color">
+                            <h:outputText value="#{dfCarsView.color}" />
+                        </p:column>
+
+                        <p:column headerText="Retirar Privilegios">
+                            <p:commandButton value="Retirar" actionListener="#{dfCarsView.selectCarFromDialog(car)}" />
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </p:dialog>
+        </ui:define>
+    </ui:composition>
+    </html>

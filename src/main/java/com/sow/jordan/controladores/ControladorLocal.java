@@ -22,9 +22,7 @@ import org.springframework.stereotype.Controller;
  * @author VILLEGAS MORENO ZEUXIS DANIEL
  */
 @Controller("controladorLocal") //Indica que la clase es un controlador
-@Scope("session") //
-@ManagedBean
-@SessionScoped
+@Scope("session") 
 public class ControladorLocal implements Serializable{
     
     @Autowired
@@ -49,8 +47,9 @@ public class ControladorLocal implements Serializable{
     }
     
     public void guardarLocal(){
-        servicioLocal.guardarLocal(local);
-        locales = servicioLocal.cargarLocales();
+        this.servicioLocal.guardarLocal(local);
+        this.locales = servicioLocal.cargarLocales();
+        this.local = new Local();
         //local=new Local();
     }
 

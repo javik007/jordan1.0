@@ -15,7 +15,7 @@ background: linear-gradient(white, gray); /* Standard syntax */
 
 #content{
     position: relative;
-    color: white;
+    color: black;
     padding: 30px;
     margin: 0px 0px 10px 0px;
 }
@@ -60,22 +60,22 @@ background: linear-gradient(white, gray); /* Standard syntax */
 }
 
 #top a:link, #top a:visited {
-  color: white;
+  color: black;
   font-weight : bold;
   text-decoration: none;
 }
 
-#top a:link:hover, #top a:visited:hover  {
+#top a:link:hover, #top a:visited:hover {
   color: black;
   font-weight : bold;
   text-decoration : underline;
 }
 
 .botones{
-            width:400px;
-            height:150px;
-            font-size: 25px;
-        }
+    width:400px;
+    height:150px;
+    font-size: 25px;
+}
 
 .centrado.ui-menubar, .centrado.selectOneRadio {
     text-align: center;

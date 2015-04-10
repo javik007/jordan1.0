@@ -61,6 +61,11 @@
             org.springframework.web.context.request.RequestContextListener
         </listener-class>
     </listener>
+    <!--Configuraciones-->
+    <context-param>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-value>/WEB-INF/configuracion.xml</param-value>
+    </context-param>
     <!--Indica el tiempo de la sesión-->
     <session-config>
         <session-timeout>

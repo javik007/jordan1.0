@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
  * @author VILLEGAS MORENO ZEUXIS DANIEL
  */
 @Entity
-@Table(name = "local")
+@Table(name = "Local")
 public class Local implements Serializable{
     
     @Id //indica que es la llave de la tabla
@@ -29,7 +29,28 @@ public class Local implements Serializable{
     
     @Column(name = "alias")
     private String alias;
-
+    
+    @ManyToOne
+    private Lugar lugar;
+    
+    @Column(name = "latitud")
+    private Double latitud;
+    
+    @Column(name = "longitud")
+    private Double longitud;
+    
+    @Column(name = "especialidad")
+    private String especialidad;
+    
+    @Column(name = "precioMin")
+    private Double precioMin;
+    
+    @Column(name = "precioMax")
+    private Double precioMax;
+    
+    @Column(name = "descripcion")
+    private String descripcion;
+    
     public Integer getId() {
         return id;
     }
@@ -53,14 +74,80 @@ public class Local implements Serializable{
     public void setAlias(String alias) {
         this.alias = alias;
     }
+    
+    public Lugar getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(Lugar lugar) {
+        this.lugar = lugar;
+    }
+    
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+
+    public Double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(Double latitud) {
+        this.latitud = latitud;
+    }
+
+    public Double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(Double longitud) {
+        this.longitud = longitud;
+    }
+
+    public Double getPrecioMin() {
+        return precioMin;
+    }
+
+    public void setPrecioMin(Double precioMin) {
+        this.precioMin = precioMin;
+    }
+
+    public Double getPrecioMax() {
+        return precioMax;
+    }
+
+    public void setPrecioMax(Double precioMax) {
+        this.precioMax = precioMax;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.id);
-        hash = 17 * hash + Objects.hashCode(this.nombre);
-        hash = 17 * hash + Objects.hashCode(this.alias);
+        int hash = 3;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        hash = 53 * hash + Objects.hashCode(this.nombre);
+        hash = 53 * hash + Objects.hashCode(this.alias);
+        hash = 53 * hash + Objects.hashCode(this.especialidad);
+        hash = 53 * hash + Objects.hashCode(this.latitud);
+        hash = 53 * hash + Objects.hashCode(this.longitud);
+        hash = 53 * hash + Objects.hashCode(this.precioMin);
+        hash = 53 * hash + Objects.hashCode(this.precioMax);
+        hash = 53 * hash + Objects.hashCode(this.descripcion);
         return hash;
+    }    
+    
+    public int getCalificacion(){
+        return 5;
     }
     
 }

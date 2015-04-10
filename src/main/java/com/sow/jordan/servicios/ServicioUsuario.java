@@ -3,8 +3,7 @@
  */
 package com.sow.jordan.servicios;
 
-import com.sow.jordan.modelos.Local;
-import com.sow.jordan.modelos.Lugar;
+import com.sow.jordan.modelos.Usuario;
 import java.util.List;
 
 /**
@@ -14,14 +13,10 @@ import java.util.List;
  * @author OLIVOS NAVARRO CESAR JONATHAN
  * @author VILLEGAS MORENO ZEUXIS DANIEL
  */
-public interface ServicioLocal {
+public interface ServicioUsuario {
     
-    public void guardarLocal(Local local);
-    
-    public void guardarLugar(Lugar lugar);
-    
-    List<Local> cargarLocales();
-    
-    List<Lugar> cargarLugares();
+    public void guardarUsuario(Usuario usuario);
+
+    List<Usuario> cargarUsuarios();
     
 }

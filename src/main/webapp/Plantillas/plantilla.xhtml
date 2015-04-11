@@ -67,14 +67,15 @@
                             <!--Validar usuario-->
                             <p:commandLink value="Recuperar Contraseña" style="color: cornflowerblue"
                                            onclick="PF('recuperar').show();PF('logeo').hide();"/><br/>
-                            <p:commandLink value="Registrarse" style="color: cornflowerblue" onclick="PF('registro').show();"/>
+                            <p:commandLink value="Registrarse" style="color: cornflowerblue" 
+                                           onclick="PF('registro').show();PF('logeo').hide();"/>
                         </div>
                     </p:dialog>
                 </h:form>
                 
                 <h:form id="agregarUsuarios">
-                    <p:dialog header="REGISTRAR" widgetVar="registro"  
-                              height="300" style="width: 120px;"> <br/>
+                    <p:dialog header="REGISTRAR" widgetVar="registro" modal="true" 
+                              height="300" closable="true" style="width: 120px;"> <br/>
                         <p:inputText placeholder="Nombre Completo" required="true"
                                      value="#{controladorUsuario.usuario.nombre}" />
                         <br/><br/>

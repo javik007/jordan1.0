@@ -4,6 +4,7 @@
 package com.sow.jordan.modelos;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -50,6 +51,16 @@ public class Local implements Serializable{
     
     @Column(name = "descripcion")
     private String descripcion;
+    
+    private List<Categoria> menu;
+
+    public List<Categoria> getMenu() {
+        return menu;
+    }
+
+    public void setMenu(List<Categoria> menu) {
+        this.menu = menu;
+    }
     
     public Integer getId() {
         return id;

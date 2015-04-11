@@ -21,20 +21,46 @@
     <context:annotation-config />
     <context:component-scan base-package="com.sow.jordan.controladores" />
     
-    <!--Busquedas a realizar>
+    <!--Se crea un objeto local-->
     <bean id="controladorLocal" class="com.sow.jordan.controladores.ControladorLocal" scope="session">
-        Busquedas a realizar>
-    </bean-->
+        <property name="local" >
+            <bean class="com.sow.jordan.modelos.Local">
+                <property name="nombre" value="" />
+                <property name="alias" value="" />
+            </bean>
+        </property>
+        <property name="lugar" >
+            <bean class="com.sow.jordan.modelos.Lugar">
+                <property name="nombre" value="" />
+            </bean>
+        </property>
+    </bean>
+    
+    <bean id="controladorUsuario" class="com.sow.jordan.controladores.ControladorUsuario" scope="session">
+        <property name="usuario" >
+            <bean class="com.sow.jordan.modelos.Usuario">
+                <property name="usuario" value="" />
+                <property name="contrasena" value="" />
+                <property name="nombre" value="" />
+                <property name="correo" value="" />
+                <!--property name="privilegio" value="ADMINISTRADOR" /-->
+                <property name="privilegio" value="SÚPER ADMINISTRADOR" />
+            </bean>
+        </property>
+    </bean>
     
     <!--Servicios-->
     <bean id="servicioLocal" class="com.sow.jordan.servicios.implementacion.ServicioLocalImplementacion" />
+    <bean id="servicioUsuario" class="com.sow.jordan.servicios.implementacion.ServicioUsuarioImplementacion" />
     
     <!--Base de datos-->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/jordan"/>
-        <property name="username"  value="root"/>
-        <property name="password" value="cesarj309260943"/>
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+        <property name="driverClass" value="org.h2.Driver"/>
+        <!--property name="url" value="jdbc:h2:/home/olivos/Documentos/Facultad/Ingeniería de Software/Proyecto/Programa/BaseDeDatos"/-->
+        <!--property name="url" value="jdbc:h2:/home/olivos/Documentos/Facultad/Ingenieria de Software/Proyecto/Programa/BaseDeDatos"/-->
+        <property name="url" value="jdbc:h2:F:\Documentos\BasesDatos\jordan1.0"/>
+        <property name="username"  value="sa"/>
+        <property name="password" value=""/>
     </bean>
     <!--EntityManager-->
     <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -45,7 +71,7 @@
         <property name="packagesToScan" value="com.sow.jordan.modelos"/> 
         <property name="jpaProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
                 <prop key="hibernate.max_fetch_depth">3</prop>
                 <prop key="hibernate.jdbc.fetch_size">50</prop>
                 <prop key="hibernate.jdbc.batch_size">10</prop>
@@ -62,7 +88,7 @@
     </bean>
        
     <jpa:repositories base-package="com.sow.jordan.repositorios" 
-                          entity-manager-factory-ref="emf" 
-                          transaction-manager-ref="transactionManager"/>
+                      entity-manager-factory-ref="emf" 
+                      transaction-manager-ref="transactionManager"/>
     
 </beans>

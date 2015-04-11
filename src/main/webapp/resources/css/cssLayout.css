@@ -6,7 +6,7 @@
     margin: 0px 0px 0px 0px;
 }
 
-#top, #content {
+#top {
 background: -webkit-linear-gradient(white, gray); /* For Safari 5.1 to 6.0 */
 background: -o-linear-gradient(white, gray); /* For Opera 11.1 to 12.0 */
 background: -moz-linear-gradient(white, gray); /* For Firefox 3.6 to 15 */
@@ -15,7 +15,7 @@ background: linear-gradient(white, gray); /* Standard syntax */
 
 #content{
     position: relative;
-    color: white;
+    color: black;
     padding: 30px;
     margin: 0px 0px 10px 0px;
 }
@@ -60,22 +60,22 @@ background: linear-gradient(white, gray); /* Standard syntax */
 }
 
 #top a:link, #top a:visited {
-  color: white;
+  color: black;
   font-weight : bold;
   text-decoration: none;
 }
 
-#top a:link:hover, #top a:visited:hover  {
+#top a:link:hover, #top a:visited:hover {
   color: black;
   font-weight : bold;
   text-decoration : underline;
 }
 
 .botones{
-            width:400px;
-            height:150px;
-            font-size: 25px;
-        }
+    width:400px;
+    height:150px;
+    font-size: 25px;
+}
 
 .centrado.ui-menubar, .centrado.selectOneRadio {
     text-align: center;

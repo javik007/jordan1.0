@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Pagina para agregar la informacion a la base de datos
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Jordan BD</title>
+    </h:head>
+    <h:body>
+        
+        <h:form>
+            <p:panelGrid columns="1" >
+                <p:inputText id="abcd" placeholder="Nombre del lugar" value="#{controladorLocal.lugar.nombre}" />
+                <p:commandButton ajax="false" 
+                                 actionListener="#{controladorLocal.guardarLugar()}" 
+                                 value="Agregar Lugar" update=":lugares @form"/>
+                <p:dataTable value="#{controladorLocal.lugares}" var="_lugar" 
+                             rowKey="#{_lugar.id}" selection="#{controladorLocal.lugar}" >                       
+                    <p:column selectionMode="single" style="width:16px;text-align:center"/>
+                    <p:column headerText="Lugar">#{_lugar.nombre}</p:column>
+                </p:dataTable> 
+                
+                <p:message for="abcd"/>
+                <p:commandButton  value="Ver valor"   actionListener="#{controladorLocal.guardarLugar()}"  />
+
+            </p:panelGrid>
+        </h:form>
+    </h:body>
+</html>

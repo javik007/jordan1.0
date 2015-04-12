@@ -25,6 +25,11 @@ public class ServicioUsuarioImplementacion implements ServicioUsuario {
     public void guardarUsuario(Usuario usuario) {
         repositorioUsuario.save(usuario);
     }
+    
+    @Override
+    public void eliminarUsuario(Usuario usuario) {
+        repositorioUsuario.delete(usuario);
+    }
 
     @Override
     public List<Usuario> cargarUsuarios() {

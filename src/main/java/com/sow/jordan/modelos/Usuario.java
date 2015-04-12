@@ -38,7 +38,7 @@ public class Usuario {
     
     @NotNull
     @Column(name = "privilegio")
-    private String privilegio;
+    private String privilegio = "USER";
 
     public String getUsuario() {
         return usuario;

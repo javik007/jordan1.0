@@ -59,7 +59,8 @@
         <property name="driverClass" value="org.h2.Driver"/>
         <!--property name="url" value="jdbc:h2:/home/olivos/Documentos/Facultad/Ingeniería de Software/Proyecto/Programa/BaseDeDatos"/-->
         <!--property name="url" value="jdbc:h2:/home/olivos/Documentos/Facultad/Ingenieria de Software/Proyecto/Programa/BaseDeDatos"/-->
-        <property name="url" value="jdbc:h2:F:\Documentos\BasesDatos\jordan1.0"/>
+        <!--property name="url" value="jdbc:h2:F:\Documentos\BasesDatos\jordan1.0"/-->
+        <property name="url" value="jdbc:h2:./test"/>
         <property name="username"  value="sa"/>
         <property name="password" value=""/>
     </bean>
@@ -78,7 +79,7 @@
                 <prop key="hibernate.jdbc.batch_size">10</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>  
-                <prop key="hibernate.hbm2ddl.auto">update</prop>       
+                <!--prop key="hibernate.hbm2ddl.auto">update</prop-->       
             </props>
         </property> 
     </bean>

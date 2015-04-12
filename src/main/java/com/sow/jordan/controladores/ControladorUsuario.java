@@ -37,7 +37,7 @@ public class ControladorUsuario {
     public void guardarUsuario(){
         this.servicioUsuario.guardarUsuario(usuario);
         usuarios = servicioUsuario.cargarUsuarios();
-        //this.usuario = new Usuario();
+        this.usuario = new Usuario();
     }
     
     public void eliminarUsuario(){

@@ -8,7 +8,13 @@ import com.sow.jordan.modelos.Lugar;
 import com.sow.jordan.servicios.ServicioLocal;
 import java.io.Serializable;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -35,11 +41,19 @@ public class ControladorLocal implements Serializable {
     private List<Lugar> lugares;
     
     private Lugar lugar;
+    
+    private MapModel simpleModel;
 
     @PostConstruct //Indica que se ejecutara despues de la inyeccion de dependencias
     public void inicia() {
         lugares = servicioLocal.cargarLugares();
         locales = servicioLocal.cargarLocales();
+        simpleModel = new DefaultMapModel();
+        
+        //Coordenadas
+        LatLng inicio = new LatLng(19.332734, -99.188601);
+        //Marcador
+        simpleModel.addOverlay(new Marker(inicio, "Rectoria"));
     }
 
     public void guardarLocal() {
@@ -94,5 +108,13 @@ public class ControladorLocal implements Serializable {
     public List<Local> getTop5() {
         return locales;
     }
+    
+    public MapModel getSimpleModel() {
+        return simpleModel;
+    }
+
+    public void setSimpleModel(MapModel simpleModel) {
+        this.simpleModel = simpleModel;
+    } 
 
 }

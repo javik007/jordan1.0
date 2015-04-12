@@ -31,14 +31,14 @@ background: linear-gradient(white, gray); /* Standard syntax */
     float: left;
     background-color: #ece3a5;
     padding: 5px;
-    width: 150px;
+    width: 360px;
 }
 
 #right {
     float: right;
     background-color: #ece3a5;
     padding: 5px;
-    width: 150px;
+    width: 250px;
 }
 
 .center_content {
@@ -63,6 +63,11 @@ background: linear-gradient(white, gray); /* Standard syntax */
   color: black;
   font-weight : bold;
   text-decoration: none;
+}
+
+.comentarios {
+    background-color: #dddddd;
+    margin: 30px 30px 0px 30px;
 }
 
 #top a:link:hover, #top a:visited:hover {

@@ -48,7 +48,7 @@ public class ControladorLocal implements Serializable {
         this.local = new Local();
     }
     
-    public void eliminarLocal(){
+    public void eliminarLocal(Local local){
         this.servicioLocal.eliminarLocal(local);
         this.locales = servicioLocal.cargarLocales();
     }

@@ -53,6 +53,7 @@
                                 <f:selectItem itemLabel="Pumabús" itemValue="Pumabús" />
                                 <f:selectItem itemLabel="Bicipuma" itemValue="Bicipuma" />
                             </p:selectManyCheckbox>
+                            <p:commandButton icon="ui-icon-search" value="Buscar"/>
                         </p:tab>
                     </p:accordionPanel>
                 </h:form>
@@ -89,7 +90,8 @@
                                 pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                             <p:ajax update="msgLastname" event="keyup" />
                         </p:inputText>
-                        <p:message for="correo" id="msgLastname" display="icon" />
+                        <p:watermark for="correo" value="Correo" />
+                        <p:message for="correo" id="msgLastname"/>
                         <br/><br/>
                         <p:password id="pass" placeholder="contraseña" match="confirmacion" 
                                     label="contarseña" required="true"
@@ -99,6 +101,7 @@
                                     label="confirmación" required="true"
                                     value="#{controladorUsuario.usuario.contrasena}"/>
                         <div align="center">
+                            <br/>
                             <p:commandButton ajax="false" actionListener="#{controladorUsuario.guardarUsuario()}" 
                                              value = "Registrarse" update=":usuarios @form"/>
                         </div>

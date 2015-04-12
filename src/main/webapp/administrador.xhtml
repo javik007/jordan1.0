@@ -196,7 +196,9 @@ Pagina principal del sistema Jordan.
                         </p:column>
 
                         <p:column headerText="Eliminar Local">
-                            <p:commandButton value="Eliminar" actionListener="#{controladorLocal.eliminarLocal()}" />
+                            <p:commandButton value="Eliminar" 
+                                             actionListener="#{controladorLocal.eliminarLocal(_local)}" 
+                                             update="@form"/>
                         </p:column>
                     </p:dataTable>
                 </h:form>
@@ -227,7 +229,8 @@ Pagina principal del sistema Jordan.
                         <p:column headerText="Eliminar Usuario">
                             <p:commandButton 
                                 value="Eliminar" 
-                                actionListener="#{controladorUsuario.eliminarUsuario()}"
+                                actionListener="#{controladorUsuario.eliminarUsuario(_user)}"
+                                update="@form"
                                 />
                         </p:column>
                     </p:dataTable>

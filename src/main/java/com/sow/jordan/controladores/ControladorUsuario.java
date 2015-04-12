@@ -40,6 +40,11 @@ public class ControladorUsuario {
         //this.usuario = new Usuario();
     }
     
+    public void eliminarUsuario(){
+        this.servicioUsuario.eliminarUsuario(usuario);
+        usuarios = servicioUsuario.cargarUsuarios();
+    }
+    
     public Usuario getUsuario() {
         return usuario;
     }

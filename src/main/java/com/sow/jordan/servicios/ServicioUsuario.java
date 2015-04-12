@@ -16,7 +16,8 @@ import java.util.List;
 public interface ServicioUsuario {
     
     public void guardarUsuario(Usuario usuario);
-
+    public void eliminarUsuario(Usuario usuario);
+    
     List<Usuario> cargarUsuarios();
     
 }

@@ -30,6 +30,11 @@ public class ServicioLocalImplementacion implements ServicioLocal{
     public void guardarLocal(Local local) {
         repositorioLocal.save(local);
     }
+
+    @Override
+    public void eliminarLocal(Local local) {
+        repositorioLocal.delete(local);
+    }
     
     @Override
     public void guardarLugar(Lugar lugar) {

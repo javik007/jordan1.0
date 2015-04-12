@@ -19,7 +19,7 @@ Pagina principal del sistema Jordan.
                                      type="button"
                                      ajax="false"
                                      styleClass="botones"
-                                     onclick="PF('dlg1').show();"/>
+                                     onclick="PF('agregarEstablecimiento').show();"/>
                     <br/>
                     <br/>
                     <p:commandButton value="Eliminar Establecimiento" 
@@ -27,7 +27,7 @@ Pagina principal del sistema Jordan.
                                      type="button"
                                      ajax="false" 
                                      styleClass="botones"
-                                     onclick="PF('dlg2').show();"/>
+                                     onclick="PF('eliminarEstablecimiento').show();"/>
                     <br/>
                     <br/>
                     <p:commandButton value="Eliminar Usuario" 
@@ -35,10 +35,10 @@ Pagina principal del sistema Jordan.
                                      type="button"
                                      ajax="false" 
                                      styleClass="botones"
-                                     onclick="PF('dlg3').show();"/>
+                                     onclick="PF('eliminarUsuario').show();"/>
                 </h:form>
             </div>    
-            <p:dialog header="Compartir en:" widgetVar="dlg1" modal="true" height="200" width="400">
+            <!--p:dialog header="Compartir en:" widgetVar="dlg1" modal="true" height="200" width="400">
                 <div align="center">
                     <h:panelGrid columns="2" cellpadding="10">
                         <p:commandLink>
@@ -53,53 +53,182 @@ Pagina principal del sistema Jordan.
                         <p:commandButton value="Continuar" />
                     </h:form>
                 </div>
+            </p:dialog-->
+            <p:dialog header="Agregar Establecimiento" 
+                      widgetVar="agregarEstablecimiento" 
+                      modal="true" height="50%" width="50%">
+                <h:form id="agregar">
+                <h:panelGrid id="establecimiento" columns="2">
+                    <h:panelGrid id="local" columns="2">
+                        <p:outputLabel value="Nombre: "/>
+                        <p:inputText id="nombre" value="Nombre" />
+                        <p:outputLabel value="Alias: "/>
+                        <p:inputText id="alias" value="Alias" />
+                        <p:outputLabel value="Lugar: "/>
+                        
+                        <p:selectOneMenu id="lugar" style="width:160px">
+                            <f:selectItem itemLabel="lugar" itemValue="Lugar" />
+                            <f:selectItem itemLabel="lugar1" itemValue="lugar1" />
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel value="Especialidad: "/>
+                        <p:inputText id="especialidad" value="Especialidad" />
+                        <p:outputLabel value="Precio: "/>
+                        <h:panelGrid id="precio" columns="3">
+                            <p:inputText id="menor" value="Menor" style="width:60px"/>
+                            <p:outputLabel value=" a "/>
+                            <p:inputText id="mayor" value="Mayor" style="width:60px"/>
+                        </h:panelGrid>
+                        <p:outputLabel value="Latitud: "/>
+                        <p:inputText id="latitud" value="Latitud" />
+                        <p:outputLabel value="Longitud: "/>
+                        <p:inputText id="Longitud" value="Longitud" />
+                    </h:panelGrid>
+                    <h:panelGrid columns="2" cellpadding="6">
+                        
+                        <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                        <h:outputText value="Wi-Fi (RIU, TELMEX,Avierto)" />
+                        
+                        <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                        <h:outputText value="Wi-Fi (Privado)" />
+                        
+                        <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                        <h:outputText value="Estacionamiento Academicos" />
+                        
+                        <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                        <h:outputText value="Estacionamiento Publico" />
+                        
+                        <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                        <h:outputText value="Para Comer" />
+                        
+                        <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                        <h:outputText value="Para Llevar" />
+                    </h:panelGrid>
+                    <p:panelGrid columns="1">
+                        <p:outputLabel value="Descripción"/>
+                        <p:inputTextarea rows="9" cols="37" />
+                    </p:panelGrid>
+                    <h:panelGrid columns="2">
+                        <p:panelGrid columns="1">
+                            <p:outputLabel value="Metro"/>
+                            <p:selectOneRadio id="metro"  layout="grid" columns="1">
+                                <f:selectItem itemLabel="Copilco" itemValue="copilco"/>
+                                <f:selectItem itemLabel="Universidad" itemValue="universidad"/>
+                                <f:selectItem itemLabel="No" itemValue="no"/>
+                            </p:selectOneRadio>
+                        </p:panelGrid>
+                        <p:panelGrid columns="1">
+                            <p:outputLabel value="Metrobús"/>
+                            <p:selectOneRadio id="metrobus" layout="grid" columns="1">
+                                <f:selectItem itemLabel="CCU" itemValue="ccu"/>
+                                <f:selectItem itemLabel="Ciudad Universitaria" itemValue="ciudad universitacia"/>
+                                <f:selectItem itemLabel="Dr. Gálvez" itemValue="dr galvez"/>
+                                <f:selectItem itemLabel="No" itemValue="no"/>
+                            </p:selectOneRadio>
+                        </p:panelGrid>
+                    </h:panelGrid>
+                    
+                    <h:panelGrid columns="1">
+                        <p:dataTable value="#{controladorLocal.locales}" id="menu" var="_local" > 
+                            <p:column headerText="Categoría">
+                            #{_local.id}
+                            </p:column>
+                            <p:column headerText="Precio Min">
+                            #{_local.nombre}
+                            </p:column>
+                            <p:column headerText="Precio Max">
+                            #{_local.alias}
+                            </p:column>
+                            <p:column style="width:24px">
+                                <p:commandButton value="Borrar" id="ajax" update="growl"  styleClass="ui-priority-primary" />
+                            </p:column>
+                        </p:dataTable>
+                        <h:panelGrid columns="3">
+                            <p:inputText id="categoria" value="Categoria" />
+                            <p:inputText id="preciomin" value="Precio Min" />
+                            <p:inputText id="preciomax" value="Precio Max" />
+                            <p:commandButton value="Agregar" />
+                        </h:panelGrid>
+                    </h:panelGrid>
+                    <h:panelGrid columns="2">
+                        <h:panelGrid columns="1">
+                            <p:dataTable value="#{controladorLocal.locales}" id="pumabus" var="_local" > 
+                                <p:column headerText="Estación">
+                                    #{_local.id}
+                                </p:column>
+                                <p:column style="width:24px">
+                                    <p:commandButton value="Borrar" id="ajax" update="growl"  styleClass="ui-priority-primary" />
+                                </p:column>
+                            </p:dataTable>
+                            <p:inputText id="estacion" value="Estación" />
+                            <p:commandButton value="Agregar" />
+                        </h:panelGrid>
+                        <h:panelGrid columns="1">
+                            <p:dataTable value="#{controladorLocal.locales}" id="bicipuma" var="_local" > 
+                                <p:column headerText="Estación">
+                                    #{_local.id}
+                                </p:column>
+                                <p:column style="width:24px">
+                                    <p:commandButton value="Borrar" id="ajax" update="growl"  styleClass="ui-priority-primary" />
+                                </p:column>
+                            </p:dataTable>
+                            <p:inputText id="estacionbisi" value="Estación" />
+                            <p:commandButton value="Agregar" />
+                        </h:panelGrid>
+                    </h:panelGrid>
+                </h:panelGrid>
+                <p:commandButton value="Agregar Establecimiento" />
+            </h:form>
             </p:dialog>
-            <p:dialog header="Eliminar Establecimiento" widgetVar="dlg2" modal="true" height="100">
+            <p:dialog header="Eliminar Establecimiento" widgetVar="eliminarEstablecimiento" modal="true" height="100">
                 <h:form>
-                    <p:dataTable var="car" value="#{dfCarsView.cars}">
-                        <p:column headerText="Id">
-                            <h:outputText value="#{dfCarsView.id}" />
+                    <p:dataTable var="_local" value="#{controladorLocal.locales}">
+                        <p:column headerText="Local">
+                            <h:outputText value="#{_local.nombre}" />
                         </p:column>
 
-                        <p:column headerText="Year">
-                            <h:outputText value="#{dfCarsView.year}" />
+                        <p:column headerText="Alias">
+                            <h:outputText value="#{_local.alias}" />
                         </p:column>
 
-                        <p:column headerText="Brand">
-                            <h:outputText value="#{dfCarsView.brand}" />
-                        </p:column>
-
-                        <p:column headerText="Color">
-                            <h:outputText value="#{dfCarsView.color}" />
+                        <p:column headerText="Lugar">
+                            <h:outputText value="#{_local.lugar}" />
                         </p:column>
 
                         <p:column headerText="Eliminar Local">
-                            <p:commandButton value="Eliminar" actionListener="#{dfCarsView.selectCarFromDialog(car)}" />
+                            <p:commandButton value="Eliminar" actionListener="#{controladorLocal.eliminarLocal()}" />
                         </p:column>
                     </p:dataTable>
                 </h:form>
             </p:dialog>
-            <p:dialog header="Eliminar Usuario" widgetVar="dlg3" modal="true" height="100">
-                <h:form>
-                    <p:dataTable var="car" value="#{dfCarsView.cars}">
-                        <p:column headerText="Id">
-                            <h:outputText value="#{dfCarsView.id}" />
+            <p:dialog header="Eliminar Usuario" widgetVar="eliminarUsuario" modal="true" height="100">
+                <h:form id="elimina">
+                    <p:dataTable var="_user" value="#{controladorUsuario.usuarios}">
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{_user.nombre}" />
                         </p:column>
 
-                        <p:column headerText="Year">
-                            <h:outputText value="#{dfCarsView.year}" />
+                        <p:column headerText="Usuario">
+                            <h:outputText value="#{_user.usuario}" />
                         </p:column>
 
-                        <p:column headerText="Brand">
-                            <h:outputText value="#{dfCarsView.brand}" />
+                        <p:column headerText="Correo">
+                            <h:outputText value="#{_user.correo}" />
                         </p:column>
 
-                        <p:column headerText="Color">
-                            <h:outputText value="#{dfCarsView.color}" />
+                        <p:column headerText="Contraseña">
+                            <h:outputText value="#{_user.contrasena}" />
+                        </p:column>
+                        
+                        <p:column headerText="Privilegio">
+                            <h:outputText value="#{_user.privilegio}" />
                         </p:column>
 
                         <p:column headerText="Eliminar Usuario">
-                            <p:commandButton value="Eliminar" actionListener="#{dfCarsView.selectCarFromDialog(car)}" />
+                            <p:commandButton 
+                                value="Eliminar" 
+                                actionListener="#{controladorUsuario.eliminarUsuario()}"
+                                />
                         </p:column>
                     </p:dataTable>
                 </h:form>

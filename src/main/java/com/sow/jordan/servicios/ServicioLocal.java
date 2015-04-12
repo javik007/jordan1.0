@@ -20,6 +20,8 @@ public interface ServicioLocal {
     
     public void guardarLugar(Lugar lugar);
     
+    public void eliminarLocal(Local local);
+    
     List<Local> cargarLocales();
     
     List<Lugar> cargarLugares();

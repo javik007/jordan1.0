@@ -43,8 +43,9 @@
                 <property name="contrasena" value="" />
                 <property name="nombre" value="" />
                 <property name="correo" value="" />
-                <!--property name="privilegio" value="ADMINISTRADOR" /-->
-                <property name="privilegio" value="SÚPER ADMINISTRADOR" />
+                <property name="privilegio" value="USER" />
+                <!--property name="privilegio" value="ADMIN" /-->
+                <!--property name="privilegio" value="ROOT" /-->
             </bean>
         </property>
     </bean>

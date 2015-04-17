@@ -11,6 +11,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
@@ -42,18 +43,20 @@ public class ControladorLocal implements Serializable {
     
     private Lugar lugar;
     
-    private MapModel simpleModel;
+    private MapModel advancedModel;
+    
+    private Marker marker;
 
     @PostConstruct //Indica que se ejecutara despues de la inyeccion de dependencias
     public void inicia() {
         lugares = servicioLocal.cargarLugares();
         locales = servicioLocal.cargarLocales();
-        simpleModel = new DefaultMapModel();
+        advancedModel = new DefaultMapModel();
         
         //Coordenadas
         LatLng inicio = new LatLng(19.332734, -99.188601);
         //Marcador
-        simpleModel.addOverlay(new Marker(inicio, "Rectoria"));
+        advancedModel.addOverlay(new Marker(inicio, "Rectoria"));
     }
 
     public void guardarLocal() {
@@ -109,12 +112,20 @@ public class ControladorLocal implements Serializable {
         return locales;
     }
     
-    public MapModel getSimpleModel() {
-        return simpleModel;
+    public MapModel getAdvancedModel() {
+        return advancedModel;
     }
 
-    public void setSimpleModel(MapModel simpleModel) {
-        this.simpleModel = simpleModel;
-    } 
+    public void setAdvancedModel(MapModel advancedModel) {
+        this.advancedModel = advancedModel;
+    } //set?
+    
+    public void onMarkerSelect(OverlaySelectEvent event) {
+        marker = (Marker) event.getOverlay();
+    }
+      
+    public Marker getMarker() {
+        return marker;
+    }
 
 }

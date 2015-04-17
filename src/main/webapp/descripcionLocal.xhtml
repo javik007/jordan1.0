@@ -16,131 +16,98 @@ Plantilla de descripcion de lugar
     <h:body>
     <ui:composition template="/Plantillas/plantilla.xhtml">
         
-        <div id="fb-root"></div>
-            <script>
-                window.fbAsyncInit = function() {
-                  FB.init({
-                    appId      : 'your-app-id',
-                    xfbml      : true,
-                    version    : 'v2.3'
-                  });
-                };
-
-                (function(d, s, id){
-                   var js, fjs = d.getElementsByTagName(s)[0];
-                   if (d.getElementById(id)) {return;}
-                   js = d.createElement(s); js.id = id;
-                   js.src = "//connect.facebook.net/es_LA/sdk.js";
-                   fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));
-            </script>
-        
         <ui:define name="content">  
             <script type="text/javascript" 
                 src="http://maps.googleapis.com/maps/api/js"/>
-
-            <div id="Descripción">
-                <div id="left">
-                    <!--<ui:insert name="left">    --> 
-                    <br/>
-                    <h:graphicImage library="img/jordanSys/" name="notAvailable.png" 
-                                    width="325" height="325"/>   
+                      
+            <div id="descripciónLocal">
+                <div id="left"><br/><br/><br/>                     
+                    <h:graphicImage library="img/fotosLocales" name="unam.JPG" 
+                                    width="300" height="300"/>  
+                    
                     <br/><br/><br/>
-                    <p:panel header="Ubicación" style="width:320px; ">
-                        <h:panelGrid columns="1" cellpadding="1">
-                            <p:gmap id="gmap" 
-                                        center="19.332734, -99.188601" 
-                                        zoom="21" 
-                                        type="HYBRID" 
-                                        style="width:280px;height:280px"
-                                        widgetVar="map"
-                                        disableDoubleClickZoom="true"  
-                                        model="#{ControladorLocal.simpleModel}">
-                            </p:gmap>
-                        </h:panelGrid>
-                    </p:panel>
-                    <br/><br/>
+                    <p:carousel numVisible="1" 
+                                itemStyle="height:80px;width:300px;" 
+                                effect="easeInStrong" 
+                                headerText="Transporte" 
+                                style="margin-bottom:0">
+                        <p:tab title="Metro">
+                            <h:panelGrid columns="3" cellpadding="5">
+                                <h:graphicImage id="logo_metro" library="img/logos/transporte" 
+                                                name="metro.png" width="60" height="60"/>
+                                <h:graphicImage id="logo_lineaMetro" library="img/logos/transporte" 
+                                                name="metro_L3.png" width="60" height="60"/>
+                                <h:graphicImage id="logo_estacionMetro" library="img/logos/transporte" 
+                                                name="metro_copilco.png" width="60" height="60"/>
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab title="Metrobús">
+                            <h:panelGrid columns="3" cellpadding="5">
+                                <h:graphicImage library="img/logos/transporte" name="mb.png" 
+                                                width="60" height="60"/>
+                                <h:graphicImage library="img/logos/transporte" name="mb_L1.png" 
+                                                width="60" height="60"/>  
+                                <h:graphicImage library="img/logos/transporte" id="estacion_mb" 
+                                                width="60" height="60"/>
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab title="Pumabús">
+                            <h:panelGrid columns="3" cellpadding="5">
+                                <h:outputText id="linea_puma" value="linea" />
+                                <h:graphicImage library="img/logos/transporte" id="color_puma" 
+                                                width="60" height="60"/> 
+                                <h:graphicImage library="img/logos/transporte" id="salida_puma" 
+                                                width="60" height="60" />
+                            </h:panelGrid>
+                        </p:tab>
+                    </p:carousel>
+                    
+                    <br/><br/><br/>
+                    <p:gmap id="gmap" 
+                                center="19.332734, -99.188601" 
+                                zoom="21" 
+                                type="HYBRID" 
+                                style="width:300px;height:300px"
+                                widgetVar="map"                                
+                                disableDoubleClickZoom="true"  
+                                model="#{ControladorLocal.advancedModel}"                                 
+                                >
+                    </p:gmap><!-- cambio simple por advanced   -->
+                    <br/>
+
                 </div>  <!--  left  -->
                 
                 <div id="right">
-
                         <br/><br/>
                         <h2>Servicios</h2>
                         <p:tab title="Servicios" >
                             <p:selectManyCheckbox id="Servicios" layout="grid" 
                                                   columns="1" styleClass="centrado">
                                 <!--f:selectItems value="#{checkboxView.cities}" 
-                                var="city" itemLabel="#{city}" itemValue="#{city}" /-->
+                                var="city" itemLabel="#{city}" itemValue="#{city}" /--> 
                                 <f:selectItem itemLabel="Wi-Fi" itemValue="Wi-Fi"/>
                                 <f:selectItem itemLabel="Metro" itemValue="Metro" />
                                 <f:selectItem itemLabel="Para Comer" itemValue="Para Comer" />
                                 <f:selectItem itemLabel="Baño" itemValue="Baño" />
                                 <f:selectItem itemLabel="Metrobús" itemValue="Metrobús" />
-                                <f:selectItem itemLabel="Para Llevar" itemValue="Para Llear" />
+                                <f:selectItem itemLabel="Para Llevar" itemValue="Para Llevar" />
                                 <f:selectItem itemLabel="Estacionamiento" itemValue="Estacionamiento" />
                                 <f:selectItem itemLabel="Pumabús" itemValue="Pumabús" />
                                 <f:selectItem itemLabel="Bicipuma" itemValue="Bicipuma" />
                             </p:selectManyCheckbox>
-                        </p:tab>
-
+                        </p:tab>                                                                       
                         <br/><br/><br/>
-                        <p:carousel numVisible="1" 
-                                    itemStyle="height:80px;width:250px;" 
-                                    effect="easeInStrong" 
-                                    headerText="Transporte" 
-                                    style="margin-bottom:0">
-                            <p:tab title="Metro">
-                                <h:panelGrid columns="3" cellpadding="5">
-                                    <h:graphicImage library="img" name="metro.png" 
-                                                    width="60" height="60"/>
-                                    <h:graphicImage library="img" name="metro_L3.png" 
-                                                    width="60" height="60"/>
-                                    <h:graphicImage library="img" id="estación_metro" 
-                                                    width="60" height="60"/>
-                                </h:panelGrid>
-                            </p:tab>
-                            <p:tab title="Metrobús">
-                                <h:panelGrid columns="3" cellpadding="5">
-                                    <h:graphicImage library="img" name="mb.png" 
-                                                    width="60" height="60"/>
-                                    <h:graphicImage library="img" name="mb_L1.png" 
-                                                    width="60" height="60"/>  
-                                    <h:graphicImage library="img" id="estacion_mb" 
-                                                    width="60" height="60"/>
-                                </h:panelGrid>
-                            </p:tab>
-                            <p:tab title="Pumabús">
-                                <h:panelGrid columns="3" cellpadding="5">
-                                    <h:outputText id="linea_puma" value="linea" />
-                                    <h:graphicImage library="img" id="color_puma" 
-                                                    width="60" height="60"/> 
-                                    <h:graphicImage library="img" id="salida_puma" 
-                                                    width="60" height="60" />
-                                </h:panelGrid>
-                            </p:tab>
-                        </p:carousel>
-                        
-                        <br/><br/><br/>
-                        <p:panel id="basic" header="Se encuentra en:" 
-                                 style="height:120px;width:250px;">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <h:graphicImage name="godfather1.jpg" 
-                                                width="60" height="60"/>
-                                <h:outputText
-                                    value="#{Lugar.nombre}" />
-                            </h:panelGrid>
-                        </p:panel>
-
-                </div> <!-- right -->
+                </div>
+            
 
                 <div class="content">
-                    <h1>Nombre Local</h1>
-                    <p:rating value="5" disabled="true" />
-                    <h:form>    
-                        <br/>
+                    <h1>Local X</h1>
+                    <br/>
+                    <p:rating value="5" disabled="false" />
+                        <br/><br/>
                         <h2>Menú</h2>
                         <p:dataTable var="_menu" 
-                                     id="Menú" style="width:550px; ">  
+                                     id="Menú" style="width:650px; ">  
                             <p:column headerText="Platillo">
                                 #{_menu.nombre}
                             </p:column>
@@ -151,31 +118,58 @@ Plantilla de descripcion de lugar
 
                         <br/><br/>
                         <h2>Descripción</h2>
-                        <p:dataTable id="Descripción" style="width:550px; ">  
+                        <p:dataTable id="Descripción" style="width:650px; ">  
                             <p:column headerText="">
                                 #{_local.descripcion}
                             </p:column>
                         </p:dataTable>
-                        <br/><br/>
-                        <div class="fb-like" 
-                             data-href="https://developers.facebook.com/docs/plugins/" 
-                             data-width="550" data-layout="button_count" 
-                             data-action="recommend" data-show-faces="true" 
-                            data-share="true">                                 
-                        </div>
-                        <br/><br/>
-                    </h:form>    
-                </div> 
-                <br/>
-                <div class="fb-comments" 
-                    data-href="http://developers.facebook.com/docs/plugins/comments/" 
-                    data-order-by="reverse_time"
-                    data-width="550px" data-numposts="5" 
-                    data-colorscheme="light">
                         
-                </div>
-            </div>  <!--div de descripcion   -->                                                         
+                        <br/><br/>
+                        <h2>Comentar</h2>
+                        <!-- Insert disqus bar  -->
+                        <p:inputTextarea rows="2" cols="90" counter="display" 
+                                         maxlength="120" counterTemplate="{0} caracteres" 
+                                         autoResize="false" />
+                        <br/><br/>
+                        <h:outputText id="display" />
+                        <h:form>
+                            <p:growl id="growl" life="2000" />
+                            <br/>
+                            <p:commandButton value="Comentar"  
+                                             update="growl" actionListener="#{buttonView.buttonAction}" 
+                                             styleClass="ui-priority-primary" icon="fa-check" />
+
+                            <p:commandButton actionListener="#{buttonView.buttonAction}" 
+                                             id="Facebook" update="growl" 
+                                             icon="img/logos/fb.png" title="Compartir" />
+                            
+                            <p:commandButton actionListener="#{buttonView.buttonAction}" 
+                                             id="Twitter" update="growl" 
+                                             icon="fa-twitter-square" title="Twittear" />
+                         </h:form>
+                        
+                        <br/><br/><br/><br/>
+                        <p:panelGrid columns="1" style="width:950px; ">
+                        <h:form id="Comentarios">
+                            <p:growl id="msgs" showDetail="true"/>
+                            <p:accordionPanel styleClass="right_content">
+                                <p:tab title="User">
+                                    <h:panelGrid columns="2">
+                                        <p:rating value="#{_local.calificacion}" readonly="true" />
+                                        <h:panelGrid columns="2" cellpadding="10">
+                                            <p:graphicImage name="/home/olivos/Imágenes/AceLogo.jpeg" />
+                                            <h:outputText value="123" />
+                                        </h:panelGrid>
+                                    </h:panelGrid>
+                                </p:tab>
+                            </p:accordionPanel>
+                        </h:form>
+                        </p:panelGrid>                           
+                </div> <!--/div de content  -->  
+      
+                
+            </div>  <!--div de descripcionLocal   -->                                                         
         </ui:define>
     </ui:composition>
     </h:body>
-</html>    
+</html>

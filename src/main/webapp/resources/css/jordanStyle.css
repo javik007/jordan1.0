@@ -31,14 +31,14 @@ background: linear-gradient(white, gray); /* Standard syntax */
     float: left;
     background-color: #dddddd;
     padding: 5px;
-    width: 150px;
+    width: 360px;
 }
 
 #right {
     float: right;
     background-color: #dddddd;
     padding: 15px;
-    width: 150px;
+    width: 230px;
 }
 
 .center_content {

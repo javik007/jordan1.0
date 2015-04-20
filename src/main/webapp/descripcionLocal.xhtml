@@ -9,10 +9,7 @@ Plantilla de descripcion de lugar
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
-   <head>
-        <title>Local X - Jordan</title>
-    </head>
-    
+
     <h:body>
     <ui:composition template="/Plantillas/plantilla.xhtml">
         
@@ -81,19 +78,14 @@ Plantilla de descripcion de lugar
                         <br/><br/>
                         <h2>Servicios</h2>
                         <p:tab title="Servicios" >
-                            <p:selectManyCheckbox id="Servicios" layout="grid" 
-                                                  columns="1" styleClass="centrado">
-                                <!--f:selectItems value="#{checkboxView.cities}" 
-                                var="city" itemLabel="#{city}" itemValue="#{city}" /--> 
-                                <f:selectItem itemLabel="Wi-Fi" itemValue="Wi-Fi"/>
-                                <f:selectItem itemLabel="Metro" itemValue="Metro" />
-                                <f:selectItem itemLabel="Para Comer" itemValue="Para Comer" />
-                                <f:selectItem itemLabel="Baño" itemValue="Baño" />
-                                <f:selectItem itemLabel="Metrobús" itemValue="Metrobús" />
-                                <f:selectItem itemLabel="Para Llevar" itemValue="Para Llevar" />
-                                <f:selectItem itemLabel="Estacionamiento" itemValue="Estacionamiento" />
-                                <f:selectItem itemLabel="Pumabús" itemValue="Pumabús" />
-                                <f:selectItem itemLabel="Bicipuma" itemValue="Bicipuma" />
+                            <p:selectManyCheckbox 
+                                        value="#{controladorLocal.local.servicios}"
+                                        layout="grid" columns="1">
+                                        <!--Modificacion de lineas-->
+                                <f:selectItems 
+                                            value="#{controladorLocal.servicios}"
+                                            var="_servi"
+                                            itemLabel="#{_servi.nombre}" itemValue="#{_servi}"/>
                             </p:selectManyCheckbox>
                         </p:tab>                                                                       
                         <br/><br/><br/>
@@ -101,30 +93,33 @@ Plantilla de descripcion de lugar
             
 
                 <div class="content">
-                    <h1>Local X</h1>
+                    <h1>#{controladorLocal.local.nombre}</h1>
                     <br/>
                     <p:rating value="5" disabled="false" />
                         <br/><br/>
                         <h2>Menú</h2>
                         <p:dataTable var="_menu" 
-                                     id="Menú" style="width:650px; ">  
-                            <p:column headerText="Platillo">
-                                #{_menu.nombre}
+                                     id="Menú" style="width:700px; ">  
+                            <p:column headerText="Platillo" style="width:300px; ">
+                                #{controladorLocal.local.menu.categoria}
                             </p:column>
-                            <p:column headerText="Precio">
-                                #{_menu.precio}
+                            <p:column headerText="Precio mínimo" style="width:200px; ">
+                                #{controladorLocal.local.menu.precioMin}
+                            </p:column>
+                            <p:column headerText="Precio máximo" style="width:200px; ">
+                                #{controladorLocal.local.menu.precioMax}
                             </p:column>
                         </p:dataTable>
 
                         <br/><br/>
                         <h2>Descripción</h2>
-                        <p:dataTable id="Descripción" style="width:650px; ">  
+                        <p:dataTable id="Descripción" style="width:700px; ">  
                             <p:column headerText="">
                                 #{_local.descripcion}
                             </p:column>
                         </p:dataTable>
                         
-                        <br/><br/>
+                        <br/><br/><br/><br/>
                         <h2>Comentar</h2>
                         <!-- Insert disqus bar  -->
                         <p:inputTextarea rows="2" cols="90" counter="display" 
@@ -135,17 +130,21 @@ Plantilla de descripcion de lugar
                         <h:form>
                             <p:growl id="growl" life="2000" />
                             <br/>
-                            <p:commandButton value="Comentar"  
-                                             update="growl" actionListener="#{buttonView.buttonAction}" 
-                                             styleClass="ui-priority-primary" icon="fa-check" />
-
-                            <p:commandButton actionListener="#{buttonView.buttonAction}" 
-                                             id="Facebook" update="growl" 
-                                             icon="img/logos/fb.png" title="Compartir" />
-                            
-                            <p:commandButton actionListener="#{buttonView.buttonAction}" 
-                                             id="Twitter" update="growl" 
-                                             icon="fa-twitter-square" title="Twittear" />
+                            <p:commandButton value="Comentar" icon="ui-icon-comment" 
+                                             title="Comentar" onclick="PF('commentshare').show()"
+                                             style="margin: 5pt"  />
+                            <p:dialog header="Comentar" widgetVar="commentshare" modal="true" 
+                                        height="130" closable="true" > <br/>
+                                  Está a punto de compartir este comentario: <br/><br/><br/>
+                                <h:panelGrid columns="3" >
+                                    <p:commandButton icon="ui-icon-check" value="Aceptar" />
+                                    
+                                    <p:commandButton icon="fa fa-facebook" value="Compartir " 
+                                                     onclick="PF('shareF').show();PF('commentshare').hide();"/>
+                                    <p:commandButton icon="fa fa-twitter" value="Twittear "  
+                                                     onclick="PF('shareT').show();PF('commentshare').hide();"/>
+                                </h:panelGrid> 
+                            </p:dialog>
                          </h:form>
                         
                         <br/><br/><br/><br/>
@@ -157,12 +156,12 @@ Plantilla de descripcion de lugar
                                     <h:panelGrid columns="2">
                                         <p:rating value="#{_local.calificacion}" readonly="true" />
                                         <h:panelGrid columns="2" cellpadding="10">
-                                            <p:graphicImage name="/home/olivos/Imágenes/AceLogo.jpeg" />
+                                            <p:graphicImage id="avatar" />
                                             <h:outputText value="123" />
                                         </h:panelGrid>
                                     </h:panelGrid>
                                 </p:tab>
-                            </p:accordionPanel>
+                            </p:accordionPanel>                                                
                         </h:form>
                         </p:panelGrid>                           
                 </div> <!--/div de content  -->  
@@ -173,3 +172,10 @@ Plantilla de descripcion de lugar
     </ui:composition>
     </h:body>
 </html>
+<!--                             <p:commandButton actionListener="#{buttonView.buttonAction}" 
+                                             id="Facebook" update="growl" 
+                                             icon="img/logos/fb.png" title="Compartir" />
+                            
+                            <p:commandButton actionListener="#{buttonView.buttonAction}" 
+                                             id="Twitter" update="growl" 
+                                             icon="fa-twitter-square" title="Twittear" /> -->

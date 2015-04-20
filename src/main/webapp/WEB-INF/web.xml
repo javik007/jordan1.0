@@ -66,6 +66,11 @@
         <param-name>javax.faces.CONFIG_FILES</param-name>
         <param-value>/WEB-INF/configuracion.xml</param-value>
     </context-param>
+    
+    <context-param>
+        <param-name>primefaces.FONT_AWESOME</param-name>
+        <param-value>true</param-value>
+     </context-param>
     <!--Indica el tiempo de la sesión-->
     <session-config>
         <session-timeout>
